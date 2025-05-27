@@ -1,116 +1,114 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Te Amo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TE AMO</title>
   <style>
     body {
       margin: 0;
-      background: black;
+      height: 100vh;
+      background: radial-gradient(circle, #1a001a, #0a000a);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
-      font-family: Arial, sans-serif;
-      color: white;
-    }
-    .word {
-      position: absolute;
-      top: -50px;
-      font-size: 24px;
-      font-weight: bold;
+      font-family: 'Segoe UI', sans-serif;
       color: #ff69b4;
-      background: linear-gradient(to bottom right, #ff69b4, #ff1493);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: fall 5s linear infinite;
     }
+
+    .falling {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      animation: fall 2s ease-in-out forwards;
+      opacity: 0;
+      font-size: 2rem;
+      font-weight: bold;
+      text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4;
+    }
+
     @keyframes fall {
-      to {
-        transform: translateY(120vh);
+      0% {
+        transform: translateY(-200px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
       }
     }
 
-    .fade-word {
-      position: absolute;
-      top: 0;
-      font-size: 24px;
-      font-weight: bold;
-      color: #ff69b4;
-      opacity: 0;
-      animation: fade-fall 5s linear forwards;
-    }
-    @keyframes fade-fall {
-      0% { transform: translateY(0); opacity: 0; }
-      50% { opacity: 0.5; }
-      100% { transform: translateY(100vh); opacity: 1; }
+    .love-message {
+      margin-top: 40px;
+      font-size: 2.5rem;
+      animation: glow 2s infinite alternate;
+      text-shadow: 0 0 10px #ff69b4, 0 0 30px #ff69b4;
     }
 
-    .heart {
-      position: absolute;
-      top: 40%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 100px;
-      color: red;
-      display: none;
-      animation: blink 1s infinite;
-    }
-    @keyframes blink {
-      0%, 50%, 100% { opacity: 1; }
-      25%, 75% { opacity: 0; }
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #ff69b4;
+      }
+      to {
+        text-shadow: 0 0 30px #ff69b4;
+      }
     }
 
-    .final-message {
+    .rose {
       position: absolute;
-      bottom: 50px;
-      width: 100%;
-      text-align: center;
-      font-size: 32px;
-      color: white;
-      display: none;
+      top: -50px;
+      width: 30px;
+      height: 30px;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Rose_icon.svg/1024px-Rose_icon.svg.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      animation: fallRose linear infinite;
+      opacity: 0.9;
+    }
+
+    @keyframes fallRose {
+      0% {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 1;
+      }
     }
   </style>
 </head>
 <body>
-  <div id="container"></div>
-  <div class="heart" id="heart">❤</div>
-  <div class="final-message" id="message">te amo, rita</div>
+  <div class="falling">
+    <span>TE AMO</span>
+    <span>TE AMO</span>
+    <span>TE AMO</span>
+    <span>TE AMO</span>
+    <span>TE AMO</span>
+    <span>TE AMO</span>
+    <span>TE AMO</span>
+    <span>TE AMO</span>
+    <span>TE AMO</span>
+    <span>TE AMO</span>
+  </div>
+
+  <div class="love-message">
+    Você é tudo pra mim
+  </div>
 
   <script>
-    const container = document.getElementById('container');
-
-    function createWord() {
-      const word = document.createElement('div');
-      word.className = 'word';
-      word.textContent = 'TE AMO';
-      word.style.left = Math.random() * 100 + 'vw';
-      container.appendChild(word);
-      setTimeout(() => word.remove(), 6000);
+    // Criar várias rosas caindo
+    for (let i = 0; i < 20; i++) {
+      const rose = document.createElement('div');
+      rose.classList.add('rose');
+      rose.style.left = `${Math.random() * 100}vw`;
+      rose.style.animationDuration = `${4 + Math.random() * 3}s`;
+      rose.style.animationDelay = `${Math.random() * 5}s`;
+      document.body.appendChild(rose);
     }
-
-    function createFadeWord() {
-      const word = document.createElement('div');
-      word.className = 'fade-word';
-      word.textContent = 'TE AMO';
-      word.style.left = Math.random() * 100 + 'vw';
-      container.appendChild(word);
-      setTimeout(() => word.remove(), 6000);
-    }
-
-    let phase = 1;
-    let interval = setInterval(createWord, 300);
-
-    setTimeout(() => {
-      clearInterval(interval);
-      container.innerHTML = '';
-      phase = 2;
-      interval = setInterval(createFadeWord, 300);
-    }, 8000);
-
-    setTimeout(() => {
-      clearInterval(interval);
-      container.innerHTML = '';
-      document.getElementById('heart').style.display = 'block';
-      document.getElementById('message').style.display = 'block';
-    }, 16000);
   </script>
 </body>
 </html>
