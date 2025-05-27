@@ -150,15 +150,21 @@
         0 0 10px #3377ff;
     }
 
-    /* Animação de rotação */
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    /* Animação estilo tornado: rotação + movimento em espiral */
+    @keyframes tornado-spin {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50px, 50px) rotate(720deg);
+        opacity: 1;
+      }
     }
 
-    /* Aplicar spin infinito */
     .spinning {
-      animation: spin 2s linear infinite;
+      animation: tornado-spin 4s linear forwards;
+      animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
     }
 
     /* Explosão - fade e escala */
@@ -261,7 +267,7 @@
       // Esconde botão
       btn.style.display = 'none';
 
-      // Mostra nomes e começa a girar
+      // Mostra nomes e começa a animação tornado
       nameAnim.style.display = 'flex';
       rita.classList.add('spinning');
       gabriel.classList.add('spinning');
