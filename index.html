@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Para Rita 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -54,15 +55,18 @@
       color: white;
       font-family: 'Great Vibes', cursive;
       text-align: center;
-      padding: 50px;
-      line-height: 1.6;
-      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
     }
 
     .mensagem {
       max-width: 800px;
-      margin: 100px auto 0;
-      filter: brightness(0.7);
+      margin: auto;
+      font-size: 28px;
+      line-height: 1.8;
+      filter: brightness(0.8);
     }
 
     .rosa {
@@ -70,6 +74,7 @@
       top: -100px;
       width: 50px;
       animation: cairRosa 10s linear infinite;
+      color: red;
     }
 
     @keyframes cairRosa {
@@ -104,7 +109,7 @@
 
       setTimeout(() => {
         document.getElementById('primeira').style.display = 'none';
-        document.querySelector('.segunda-tela').style.display = 'block';
+        document.querySelector('.segunda-tela').style.display = 'flex';
       }, 9000);
     </script>
   </div>
@@ -113,25 +118,32 @@
   <div class="segunda-tela">
     <div class="mensagem">
       <p><strong>Rita,</strong></p>
-      <p>Seus olhos <span class="azul">azuis</span> me lembram a <span class="azul">lua</span>, calmos e lindos. Seus <span class="amarelo">cabelos</span> <span class="amarelo">dourados</span> brilham como o sol, iluminando tudo ao seu redor.</p>
-      <p>Seu nariz é <span class="branco">perfeito</span>, sua boca é <span class="branco">incrível</span>, cada característica sua é <span class="branco">impecável</span>.</p>
-      <p>Seu umbigo é o mais lindo que já vi, seus pés me lembram a Cinderela e suas mãos são tão deslumbrantes quanto a Branca de Neve.</p>
-      <p>Eu estou vivendo em um verdadeiro conto de <span class="vermelho">fadas</span>, com a princesa mais linda do universo.</p>
+      <p>
+        Seus olhos <span class="azul">azuis</span> me lembram a <span class="azul">lua</span>, calmos e lindos. Seus <span class="amarelo">cabelos</span> <span class="amarelo">dourados</span> brilham como o sol, iluminando tudo ao seu redor.
+      </p>
+      <p>
+        Seu nariz é perfeito, sua boca é incrível, cada característica sua é impecável.
+      </p>
+      <p>
+        Seu umbigo é o mais lindo que já vi, seus pés me lembram a Cinderela e suas mãos são tão deslumbrantes quanto a Branca de Neve.
+      </p>
+      <p>
+        Eu estou vivendo em um verdadeiro conto de <span class="vermelho">fadas</span>, com a princesa mais linda do universo.
+      </p>
       <br>
       <p>com amor,<br>Gabriel</p>
     </div>
 
-    <!-- Rosas caindo -->
+    <!-- Rosas vermelhas caindo -->
     <script>
-      const rosas = ["🌹", "🌷"];
       for (let i = 0; i < 30; i++) {
-        let img = document.createElement("div");
-        img.textContent = rosas[Math.floor(Math.random() * rosas.length)];
-        img.className = "rosa";
-        img.style.left = Math.random() * 100 + "vw";
-        img.style.fontSize = (30 + Math.random() * 30) + "px";
-        img.style.animationDelay = Math.random() * 10 + "s";
-        document.body.appendChild(img);
+        let rosa = document.createElement("div");
+        rosa.className = "rosa";
+        rosa.textContent = "🌹";
+        rosa.style.left = Math.random() * 100 + "vw";
+        rosa.style.fontSize = (30 + Math.random() * 30) + "px";
+        rosa.style.animationDelay = Math.random() * 10 + "s";
+        document.body.appendChild(rosa);
       }
     </script>
   </div>
