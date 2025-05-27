@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Te Amo</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+    .word {
+      position: absolute;
+      top: -50px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #ff69b4;
+      background: linear-gradient(to bottom right, #ff69b4, #ff1493);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fall 5s linear infinite;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(120vh);
+      }
+    }
+
+    .fade-word {
+      position: absolute;
+      top: 0;
+      font-size: 24px;
+      font-weight: bold;
+      color: #ff69b4;
+      opacity: 0;
+      animation: fade-fall 5s linear forwards;
+    }
+    @keyframes fade-fall {
+      0% { transform: translateY(0); opacity: 0; }
+      50% { opacity: 0.5; }
+      100% { transform: translateY(100vh); opacity: 1; }
+    }
+
+    .heart {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 100px;
+      color: red;
+      display: none;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0; }
+    }
+
+    .final-message {
+      position: absolute;
+      bottom: 50px;
+      width: 100%;
+      text-align: center;
+      font-size: 32px;
+      color: white;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <div class="heart" id="heart">❤</div>
+  <div class="final-message" id="message">te amo, rita</div>
+
+  <script>
+    const container = document.getElementById('container');
+
+    function createWord() {
+      const word = document.createElement('div');
+      word.className = 'word';
+      word.textContent = 'TE AMO';
+      word.style.left = Math.random() * 100 + 'vw';
+      container.appendChild(word);
+      setTimeout(() => word.remove(), 6000);
+    }
+
+    function createFadeWord() {
+      const word = document.createElement('div');
+      word.className = 'fade-word';
+      word.textContent = 'TE AMO';
+      word.style.left = Math.random() * 100 + 'vw';
+      container.appendChild(word);
+      setTimeout(() => word.remove(), 6000);
+    }
+
+    let phase = 1;
+    let interval = setInterval(createWord, 300);
+
+    setTimeout(() => {
+      clearInterval(interval);
+      container.innerHTML = '';
+      phase = 2;
+      interval = setInterval(createFadeWord, 300);
+    }, 8000);
+
+    setTimeout(() => {
+      clearInterval(interval);
+      container.innerHTML = '';
+      document.getElementById('heart').style.display = 'block';
+      document.getElementById('message').style.display = 'block';
+    }, 16000);
+  </script>
+</body>
+</html>
