@@ -18,22 +18,20 @@
       color: white;
     }
 
-    .blur-pink {
+    .blur-pink, .blur-blue {
       position: absolute;
       width: 100vw;
       height: 100vh;
-      background: radial-gradient(circle, rgba(255,0,255,0.2) 0%, transparent 70%);
       filter: blur(100px);
       z-index: -1;
     }
 
+    .blur-pink {
+      background: radial-gradient(circle, rgba(255,0,255,0.2) 0%, transparent 70%);
+    }
+
     .blur-blue {
-      position: absolute;
-      width: 100vw;
-      height: 100vh;
       background: radial-gradient(circle, rgba(0,191,255,0.15) 0%, transparent 70%);
-      filter: blur(120px);
-      z-index: -1;
     }
 
     .te-amo {
@@ -42,6 +40,7 @@
       font-size: 24px;
       animation: cair 5s linear infinite;
       text-shadow: 0 0 10px hotpink;
+      font-weight: bold;
     }
 
     @keyframes cair {
@@ -53,6 +52,13 @@
         top: 110%;
         opacity: 0;
       }
+    }
+
+    #primeira {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
     }
 
     .segunda-tela {
@@ -68,6 +74,7 @@
       text-align: center;
       flex-direction: column;
       padding: 30px;
+      z-index: 2;
     }
 
     .mensagem {
@@ -111,13 +118,13 @@
         div.style.left = Math.random() * 100 + 'vw';
         div.style.animationDuration = (3 + Math.random() * 3) + 's';
         div.style.fontSize = (20 + Math.random() * 20) + 'px';
-        document.body.appendChild(div);
+        document.getElementById('primeira').appendChild(div);
       }
 
       setTimeout(() => {
         document.getElementById('primeira').style.display = 'none';
         document.querySelector('.segunda-tela').style.display = 'flex';
-      }, 9000);
+      }, 9000); // duração da primeira parte
     </script>
   </div>
 
