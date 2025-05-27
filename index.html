@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Para Rita 💖</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -16,6 +15,7 @@
       overflow: hidden;
       background: black;
       font-family: 'Arial Black', sans-serif;
+      color: white;
     }
 
     .blur {
@@ -52,49 +52,44 @@
       width: 100vw;
       height: 100vh;
       background: black;
-      color: white;
-      font-family: 'Great Vibes', cursive;
-      text-align: center;
+      font-family: 'Arial Black', sans-serif;
       display: flex;
       align-items: center;
       justify-content: center;
+      text-align: center;
+      flex-direction: column;
       padding: 30px;
     }
 
     .mensagem {
       max-width: 800px;
-      margin: auto;
-      font-size: 28px;
+      font-size: 22px;
       line-height: 1.8;
-      filter: brightness(0.8);
+      color: white;
     }
 
-    .rosa {
-      position: absolute;
-      top: -100px;
-      width: 50px;
-      animation: cairRosa 10s linear infinite;
-      color: red;
+    .botao {
+      margin-top: 40px;
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: transparent;
+      border: 2px solid #00BFFF;
+      border-radius: 25px;
+      color: #00BFFF;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
-    @keyframes cairRosa {
-      0% {
-        transform: translateY(-100px) rotate(0deg);
-      }
-      100% {
-        transform: translateY(110vh) rotate(360deg);
-      }
+    .botao:hover {
+      background-color: #00BFFF;
+      color: white;
     }
-
-    .azul { color: #00BFFF; }
-    .amarelo { color: #FFD700; }
-    .vermelho { color: #FF4500; }
   </style>
 </head>
 <body>
   <div class="blur"></div>
 
-  <!-- Primeira tela com muitos "TE AMO" -->
+  <!-- Primeira tela -->
   <div id="primeira">
     <script>
       for (let i = 0; i < 100; i++) {
@@ -114,38 +109,19 @@
     </script>
   </div>
 
-  <!-- Segunda tela com mensagem personalizada -->
+  <!-- Segunda tela recriada -->
   <div class="segunda-tela">
     <div class="mensagem">
-      <p><strong>Rita,</strong></p>
+      <p>Rita,</p>
       <p>
-        Seus olhos <span class="azul">azuis</span> me lembram a <span class="azul">lua</span>, calmos e lindos. Seus <span class="amarelo">cabelos</span> <span class="amarelo">dourados</span> brilham como o sol, iluminando tudo ao seu redor.
-      </p>
-      <p>
-        Seu nariz é perfeito, sua boca é incrível, cada característica sua é impecável.
-      </p>
-      <p>
-        Seu umbigo é o mais lindo que já vi, seus pés me lembram a Cinderela e suas mãos são tão deslumbrantes quanto a Branca de Neve.
-      </p>
-      <p>
-        Eu estou vivendo em um verdadeiro conto de <span class="vermelho">fadas</span>, com a princesa mais linda do universo.
+        Seus olhos azuis me lembram a lua, calmos e lindos. Seus cabelos dourados brilham como o sol, iluminando tudo ao seu redor. Seu nariz é perfeito, sua boca é incrível, cada característica sua é impecável. Seu umbigo é o mais lindo que já vi, seus pés me lembram a Cinderela e suas mãos são tão deslumbrantes quanto a Branca de Neve. Eu estou vivendo em um verdadeiro conto de fadas, com a princesa mais linda do universo.
       </p>
       <br>
       <p>com amor,<br>Gabriel</p>
     </div>
-
-    <!-- Rosas vermelhas caindo -->
-    <script>
-      for (let i = 0; i < 30; i++) {
-        let rosa = document.createElement("div");
-        rosa.className = "rosa";
-        rosa.textContent = "🌹";
-        rosa.style.left = Math.random() * 100 + "vw";
-        rosa.style.fontSize = (30 + Math.random() * 30) + "px";
-        rosa.style.animationDelay = Math.random() * 10 + "s";
-        document.body.appendChild(rosa);
-      }
-    </script>
+    <button class="botao" onclick="window.open('https://open.spotify.com/intl-pt/track/4UChhDCTtneR0QXN0btEmz?si=d12602ccb7d848d4', '_blank')">
+      Eu te dedico...
+    </button>
   </div>
 </body>
 </html>
