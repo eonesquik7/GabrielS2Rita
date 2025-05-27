@@ -1,232 +1,287 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TE AMO Animado</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Te Amo - Rita & Gabriel</title>
 
-  /* Fundo preto com blur rosa */
-  body, html {
-    margin: 0; padding: 0; overflow: hidden;
-    background: black;
-    height: 100vh;
-    width: 100vw;
-    position: relative;
-    font-family: Arial, sans-serif;
-  }
+  <!-- Fonte casamento e negrito -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@700&display=swap" rel="stylesheet" />
 
-  /* Blur rosa atrás */
-  #blur-bg {
-    position: fixed;
-    top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    background: radial-gradient(circle, rgba(255,0,150,0.3), transparent 70%);
-    filter: blur(120px);
-    pointer-events: none;
-    z-index: 0;
-  }
+  <style>
+    /* RESET básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body, html {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: black;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+    }
 
-  /* Container para textos caindo */
-  #teamo-container {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    overflow: hidden;
-    z-index: 10;
-  }
+    /* PRIMEIRA TELA */
 
-  /* Texto TE AMO rosa, negrito, grande e com brilho */
-  .teamo {
-    position: absolute;
-    top: -50px; /* começa acima da tela */
-    color: #ff66cc;
-    font-weight: 900;
-    font-size: 2.5rem;
-    text-shadow:
-      0 0 8px #ff66cc,
-      0 0 15px #ff33aa,
-      0 0 20px #ff1a8c,
-      0 0 30px #ff1a8c;
-    animation-name: drop;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
-  }
+    #first-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: black;
+      overflow: hidden;
+      z-index: 10;
+    }
 
-  /* Animação de queda */
-  @keyframes drop {
-    to {
-      transform: translateY(110vh);
+    #blur-bg {
+      position: fixed;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(255,0,150,0.3), transparent 70%);
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .te-amo {
+      position: absolute;
+      top: -5%;
+      color: #ff66cc;
+      font-weight: 700;
+      font-size: 2.5rem;
+      font-family: 'Poppins', sans-serif;
+      text-shadow:
+        0 0 5px #ff66cc,
+        0 0 10px #ff33aa,
+        0 0 15px #ff1a8c;
+      user-select: none;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) translateX(20px);
+        opacity: 0;
+      }
+    }
+
+    /* SEGUNDA TELA */
+
+    #second-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
       opacity: 0;
+      pointer-events: none;
+      transition: opacity 1.5s ease;
+      z-index: 20;
     }
-  }
 
-  /* Segunda tela */
-  #second-screen {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 1.5s ease;
-    z-index: 20;
-  }
-
-  /* Blur rosa para segunda tela */
-  #second-screen #blur-bg-2 {
-    position: fixed;
-    top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    background: radial-gradient(circle, rgba(255,0,150,0.3), transparent 70%);
-    filter: blur(120px);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Texto da segunda tela - fonte casamento (Pacifico) e rosa */
-  #second-screen h1 {
-    color: #ff66cc;
-    font-family: 'Pacifico', cursive;
-    font-size: 3.5rem;
-    margin: 0;
-    text-shadow:
-      0 0 8px #ff66cc,
-      0 0 15px #ff33aa,
-      0 0 20px #ff1a8c,
-      0 0 30px #ff1a8c;
-  }
-
-  /* Container para rosas caindo */
-  #roses-container {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 10;
-  }
-
-  /* Estilo das rosas */
-  .rose {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    fill: #ff66cc;
-    filter: drop-shadow(0 0 5px #ff33aa);
-    animation-name: fall-rose, sway;
-    animation-timing-function: linear, ease-in-out;
-    animation-iteration-count: infinite, infinite;
-  }
-
-  /* Queda das rosas */
-  @keyframes fall-rose {
-    from {
-      transform: translateY(-50px);
-      opacity: 1;
+    #blur-bg-2 {
+      position: fixed;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(255,0,150,0.3), transparent 70%);
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
     }
-    to {
-      transform: translateY(110vh);
-      opacity: 0;
-    }
-  }
 
-  /* Movimento lateral suave */
-  @keyframes sway {
-    0%, 100% {
-      transform: translateX(0);
+    /* Botão azul com bordas curvas */
+    #add-gabriel-btn {
+      padding: 15px 35px;
+      font-size: 1.5rem;
+      border-radius: 15px;
+      border: 3px solid #3399ff;
+      background: transparent;
+      color: #3399ff;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s, color 0.3s;
+      z-index: 10;
     }
-    50% {
-      transform: translateX(15px);
+
+    #add-gabriel-btn:hover {
+      background-color: #3399ff;
+      color: white;
     }
-  }
-</style>
+
+    /* Container para nomes animados */
+    #name-animation {
+      margin-top: 40px;
+      display: flex;
+      gap: 40px;
+      font-weight: 900;
+      font-size: 3.5rem;
+      user-select: none;
+      z-index: 10;
+    }
+
+    /* Nome Rita - rosa */
+    #name-rita {
+      color: #ff66cc;
+      font-family: 'Pacifico', cursive;
+      text-shadow:
+        0 0 4px #ff66cc,
+        0 0 8px #ff33aa,
+        0 0 10px #ff1a8c;
+    }
+
+    /* Nome Gabriel - azul */
+    #name-gabriel {
+      color: #3399ff;
+      font-family: Arial, sans-serif;
+      text-shadow:
+        0 0 4px #3399ff,
+        0 0 8px #33aaff,
+        0 0 10px #3377ff;
+    }
+
+    /* Animação de rotação */
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Aplicar spin infinito */
+    .spinning {
+      animation: spin 2s linear infinite;
+    }
+
+    /* Explosão - fade e escala */
+    @keyframes explode {
+      to {
+        opacity: 0;
+        transform: scale(4);
+      }
+    }
+
+    .explode {
+      animation: explode 1s forwards;
+    }
+
+    /* Frase final roxa */
+    #final-message {
+      margin-top: 30px;
+      color: #9b30ff;
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
+      text-shadow:
+        0 0 5px #9b30ff,
+        0 0 10px #7a1fff,
+        0 0 15px #7a1fff;
+      user-select: none;
+      z-index: 10;
+    }
+  </style>
 </head>
 <body>
+  <!-- Primeira tela -->
+  <div id="first-screen">
+    <div id="blur-bg"></div>
+  </div>
 
-<div id="blur-bg"></div>
+  <!-- Segunda tela -->
+  <div id="second-screen">
+    <div id="blur-bg-2"></div>
 
-<div id="teamo-container"></div>
+    <!-- Botão "Adicionar Gabriel" -->
+    <button id="add-gabriel-btn">Adicionar Gabriel</button>
 
-<div id="second-screen">
-  <div id="blur-bg-2"></div>
-  <h1>Você é tudo pra mim, Rita</h1>
-  <div id="roses-container"></div>
-</div>
+    <!-- Container para animação dos nomes -->
+    <div id="name-animation" style="display:none;">
+      <span id="name-rita">Rita</span>
+      <span id="name-gabriel">Gabriel</span>
+    </div>
 
-<script>
-  const teamoContainer = document.getElementById('teamo-container');
-  const secondScreen = document.getElementById('second-screen');
-  const rosesContainer = document.getElementById('roses-container');
+    <!-- Frase final, começa escondida -->
+    <h1 id="final-message" style="display:none;">eu te amo, amor</h1>
+  </div>
 
-  // Quantidade para cobrir a tela com TE AMO
-  // Ajusta para cobrir toda largura com textos espaçados na horizontal
-  const textoWidth = 120; // largura estimada do texto TE AMO
-  const textoHeight = 50; // altura estimada
-  const cols = Math.ceil(window.innerWidth / textoWidth) + 2;
-  const rows = 20; // número de linhas para queda contínua
+  <script>
+    const firstScreen = document.getElementById('first-screen');
+    const secondScreen = document.getElementById('second-screen');
 
-  let fallingCount = 0;
-  const totalFallings = cols * rows;
+    // Função para criar vários "TE AMO"
+    function createTeAmo() {
+      const num = 150; // muitos para cobrir toda a tela
+      for (let i = 0; i < num; i++) {
+        const teAmo = document.createElement('div');
+        teAmo.classList.add('te-amo');
+        teAmo.textContent = 'TE AMO';
 
-  // Função para criar um "TE AMO" caindo
-  function createTeAmo(x, delay) {
-    const el = document.createElement('div');
-    el.classList.add('teamo');
-    el.style.left = (x * textoWidth) + 'px';
-    el.style.animationDuration = (6 + Math.random() * 4) + 's';
-    el.style.animationDelay = delay + 's';
-    el.textContent = 'TE AMO';
+        // posição horizontal aleatória em % da largura
+        teAmo.style.left = Math.random() * 100 + 'vw';
 
-    // Quando a animação acabar, conta pra saber quando terminar
-    el.addEventListener('animationend', () => {
-      el.remove();
-      fallingCount++;
-      if(fallingCount >= totalFallings) {
-        showSecondScreen();
+        // duração e delay aleatórios para animação de queda
+        const duration = 4 + Math.random() * 3; // 4-7 segundos
+        const delay = Math.random() * 5; // 0-5 segundos
+
+        teAmo.style.animationDuration = duration + 's';
+        teAmo.style.animationDelay = delay + 's';
+
+        firstScreen.appendChild(teAmo);
       }
+    }
+
+    // Chama a função que cria o "TE AMO" caindo
+    createTeAmo();
+
+    // Quando todos os "TE AMO" caírem (7s + delay máximo), troca para segunda tela
+    setTimeout(() => {
+      firstScreen.style.opacity = '0';
+      firstScreen.style.pointerEvents = 'none';
+
+      secondScreen.style.opacity = '1';
+      secondScreen.style.pointerEvents = 'auto';
+    }, 12000); // um pouco mais que o máximo das animações
+
+    // Código da segunda tela - botão e animação
+
+    const btn = document.getElementById('add-gabriel-btn');
+    const nameAnim = document.getElementById('name-animation');
+    const rita = document.getElementById('name-rita');
+    const gabriel = document.getElementById('name-gabriel');
+    const finalMsg = document.getElementById('final-message');
+
+    btn.addEventListener('click', () => {
+      // Esconde botão
+      btn.style.display = 'none';
+
+      // Mostra nomes e começa a girar
+      nameAnim.style.display = 'flex';
+      rita.classList.add('spinning');
+      gabriel.classList.add('spinning');
+
+      // Após 4 segundos, "explodem"
+      setTimeout(() => {
+        rita.classList.remove('spinning');
+        gabriel.classList.remove('spinning');
+
+        rita.classList.add('explode');
+        gabriel.classList.add('explode');
+      }, 4000);
+
+      // Depois da explosão (1s depois), muda fundo para roxo e mostra frase final
+      setTimeout(() => {
+        secondScreen.style.background = '#5a2ea6'; // roxo escuro
+        nameAnim.style.display = 'none';
+        finalMsg.style.display = 'block';
+      }, 5000);
     });
-
-    teamoContainer.appendChild(el);
-  }
-
-  // Criar vários "TE AMO" para cobrir a tela
-  for(let row = 0; row < rows; row++) {
-    for(let col = 0; col < cols; col++) {
-      createTeAmo(col, row * 0.3 + Math.random() * 0.3);
-    }
-  }
-
-  // Mostrar segunda tela com frase e rosas caindo
-  function showSecondScreen() {
-    secondScreen.style.opacity = '1';
-    secondScreen.style.pointerEvents = 'auto';
-
-    // Criar várias rosas caindo
-    const roseSVG = `<svg class="rose" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" >
-      <path d="M32 2c-3 8-12 14-12 14 0 5-3 9-3 9 4-3 5-2 6-1 2 2 4 8 4 8l-2 6 4 2 4-2-2-6s2-6 4-8c1-1 2-2 6 1 0 0-3-4-3-9 0 0-9-6-12-14z" />
-    </svg>`;
-
-    const numRoses = 60;
-    for(let i=0; i<numRoses; i++) {
-      const div = document.createElement('div');
-      div.innerHTML = roseSVG;
-      const rose = div.firstChild;
-
-      rose.style.left = Math.random() * window.innerWidth + 'px';
-      rose.style.top = (-40 - Math.random() * 100) + 'px';
-      rose.style.animationDuration = (7 + Math.random() * 5) + 's';
-      rose.style.animationDelay = (Math.random() * 5) + 's';
-      rose.style.animationName = 'fall-rose, sway';
-      rosesContainer.appendChild(rose);
-    }
-  }
-</script>
-
+  </script>
 </body>
 </html>
